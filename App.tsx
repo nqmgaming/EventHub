@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SplashScreen} from './src/screens';
 import AuthNavigator from './src/navigators/AuthNavigator';
@@ -12,12 +12,21 @@ const App = () => {
     }, 1500);
     return () => clearTimeout(timeout);
   }, []);
-  return isShowSplash ? (
-    <SplashScreen />
-  ) : (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
+  return (
+    <>
+      <StatusBar
+        barStyle={'dark-content'}
+        translucent={true}
+        backgroundColor={'transparent'}
+      />
+      {isShowSplash ? (
+        <SplashScreen />
+      ) : (
+        <NavigationContainer>
+          <AuthNavigator />
+        </NavigationContainer>
+      )}
+    </>
   );
 };
 
